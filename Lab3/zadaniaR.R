@@ -1,0 +1,38 @@
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+plik_csv <- "benchmark_results.csv"
+dane <- read_csv(plik_csv)
+
+statystyki <- dane %>%
+  group_by(Size, Operation) %>%
+  summarise(
+    MeanTime = mean(Time),
+    StdTime = sd(Time),
+    .groups = 'drop'
+  )
+
+print(statystyki)
+
+wykres <- ggplot(statystyki, aes(x = Size, y = MeanTime, color = Operation)) +
+  geom_point(size = 3) +
+  geom_line(linewidth = 1) +
+  geom_errorbar(aes(ymin = MeanTime - StdTime, ymax = MeanTime + StdTime), 
+                width = 150, linewidth = 0.8) +
+  facet_wrap(~ Operation, scales = "free_y") +
+  labs(
+    title = "Średni czas obliczeń w zależności od rozmiaru danych",
+    subtitle = "Na podstawie danych z laboratorium 1",
+    x = "Rozmiar danych (n)",
+    y = "Średni czas wykonania [s]"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+    plot.subtitle = element_text(hjust = 0.5, size = 10, color = "gray40"),
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 12)
+  )
+
+print(wykres)
