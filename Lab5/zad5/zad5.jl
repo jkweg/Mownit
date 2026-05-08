@@ -1,6 +1,6 @@
 using Plots
 import Pkg
-Pkg.add("TaylorSeries")
+# Pkg.add("TaylorSeries")
 using TaylorSeries
 using Polynomials
 
@@ -24,10 +24,10 @@ y_pade = myfun_pade.(x_geste)
 p = plot(x_geste, y_prawdziwe, label="Oryginał: log(1+x)", color=:black, linewidth=4, 
          title="Aproksymacja Padé vs Szereg Taylora", xlabel="Oś X", ylabel="Oś Y", legend=:bottomright)
 
-plot!(p, x_geste, y_taylor, label="Taylor (stopień 6) - Ucieka!", color=:red, linewidth=2, linestyle=:dash)
+# plot!(p, x_geste, y_taylor, label="Taylor (stopień 6) - Ucieka!", color=:red, linewidth=2, linestyle=:dash)
 
 plot!(p, x_geste, y_pade, label="Padé [3/3] - Stabilne", color=:blue, linewidth=3)
 
 plot!(p, ylim=(-2.0, 2.5))
 
-savefig("zad5_pade.png")
+savefig("zad52_pade.png")

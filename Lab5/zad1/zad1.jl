@@ -33,7 +33,7 @@ naive_multiplication(A_warm, B_warm)
 better_multiplication(A_warm, B_warm)
 A_warm * B_warm
 
-rozmiary = [50, 100, 150, 200, 300, 400] 
+rozmiary = [50, 100, 150, 200, 300, 400,500,600] 
 liczba_prob = 5 
 
 sr_naive = Float64[]; std_naive = Float64[]
